@@ -6,7 +6,10 @@ To better assess a candidates development skills, we would like to provide the f
 1. Next, complete the project as described below within your fork.
 1. Finally, push all of your changes to your fork on github and submit a pull request.  You should also email [data.challenge@livingsocial.com](mailto:data.challenge@livingsocial.com) and your recruiter to let them know you have submitted a solution.  Make sure to include your github username in your email (so we can match people with pull requests).
 
-Note: As an alternative submission process, you may email a patch file to [data.challenge@livingsocial.com](mailto:data.challenge@livingsocial.com).
+## Alternate Submission Instructions (if you don't want to publicize completing the challenge)
+1. Clone the repository
+1. Next, complete your project as described below within your local repository
+1. Email a patch file to [data.challenge@livingsocial.com](mailto:data.challenge@livingsocial.com).
 
 ## Project Description
 Imagine that LivingSocial has just acquired a new company.  Unfortunately, the company has never stored their data in a database and instead uses a plain text file.  We need to create a way for the new subsidiary to import their data into a database.  Your task is to create a web interface that accepts file uploads, normalizes the data, and then stores it in a relational database.
