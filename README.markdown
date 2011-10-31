@@ -2,6 +2,7 @@
 To better assess a candidates development skills, we would like to provide the following challenge.  You have as much time as you'd like (though we ask that you not spend more than a few hours) and may use any programming language or framework you'd like.  
 
 There are two jobs that both use this challenge:
+
 1. Senior Software Engineer: If you are applying to this position, the email address you should use for submission is [dev.challenges@livingsocial.com](dev.challenges@livingsocial.com).
 1. Senior Software Engineer, Big Data (and/or Data Scientist): If you are applying to this position, the email address you should use for submission is [data.challenge@livingsocial.com](mailto:data.challenge@livingsocial.com).
 
@@ -10,7 +11,7 @@ Feel free to email the appropriate address above if you have any questions.
 ## Submission Instructions
 1. First, fork this project on github.  You will need to create an account if you don't already have one.
 1. Next, complete the project as described below within your fork.
-1. Finally, push all of your changes to your fork on github and submit a pull request.  You should also email [data.challenge@livingsocial.com](mailto:data.challenge@livingsocial.com) and your recruiter to let them know you have submitted a solution.  Make sure to include your github username in your email (so we can match people with pull requests).
+1. Finally, push all of your changes to your fork on github and submit a pull request.  You should also email the appropriate address listed in the first section and your recruiter to let them know you have submitted a solution.  Make sure to include your github username in your email (so we can match people with pull requests).
 
 ## Alternate Submission Instructions (if you don't want to publicize completing the challenge)
 1. Clone the repository
