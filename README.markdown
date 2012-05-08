@@ -36,7 +36,7 @@ Your application does not need to:
 Your application should be easy to set up and should run on either Linux or Mac OS X.  It should not require any for-pay software.
 
 ## Evaluation
-Evaluation of your submission will be based on the following criteria. Additionally, reviewers will attempt to assess your familiarity with standard libraries and object-oriented programming based on how you've structured your submission.
+Evaluation of your submission will be based on the following criteria. Additionally, reviewers will attempt to assess your familiarity with standard libraries. If your code submission is in Ruby, reviewers will attempt to assess your experience with object-oriented programming based on how you've structured your submission.
 
 1. Did your application fulfill the basic requirements?
 1. Did you document the method for setting up and running your application?
