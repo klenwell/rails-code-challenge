@@ -1,5 +1,5 @@
 # Challenge for Software Engineer
-To better assess a candidates development skills, we would like to provide the following challenge.  You have as much time as you'd like (though we ask that you not spend more than a few hours).
+To better assess a candidates development skills, we would like to provide the following challenge. Use your own judgment on deciding how long to spend on this. We want you to feel comfortable and not rushed without feeling obligated to burn a lot of your personal time on it. Feel free to add comments in the README for things you would do given more time.
 
 If you are applying for a software engineer position, the email address you should use for submission is [dev.challenges@livingsocial.com](mailto:dev.challenges@livingsocial.com).  Please use either Ruby or Clojure.
 
