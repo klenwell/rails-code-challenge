@@ -6,7 +6,9 @@
   <h4 class="upload_success">Upload success!</h4>
   <p class="grand_total">
     Total Revenue in File:
-    <span class="total_revenue">TOTAL HERE</span>
+    <span class="total_revenue">
+      <%= number_to_currency (@rows[:valid].collect{ |row| row[:total_amount] }).sum %>
+    </span>
   </p>
   <p><%= link_to 'Upload another file', purchases_path %></p>
 
