@@ -54,5 +54,12 @@ class PurchasesControllerTest < ActionController::TestCase
   end
 
   test "should not save data when file with invalid data uploaded" do
+    assert_no_difference('Purchase.count') do
+      post :upload, upload: fixture_file_upload('files/invalid_data.tab')
+    end
+
+    # Returns 200 but with error messages
+    assert_response :success
+    assert_select 'h4.upload_failure'
   end
 end

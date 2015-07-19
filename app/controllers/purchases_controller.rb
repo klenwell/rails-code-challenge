@@ -25,7 +25,7 @@ class PurchasesController < ApplicationController
     Purchase.transaction do
       # Rescue block for file-level validations: empty file
       begin
-        SmarterCSV.process(@upload.path, {:col_sep => "\t"}).each_with_index do |row, line_num|
+        SmarterCSV.process(@upload.path, {:col_sep => "\t"}).each do |row, line_num|
           # Validate header row
           # TODO: This is kludgey. Is there a way to get header row itself from SmarterCSV?
           if line_num == 0
@@ -56,8 +56,9 @@ class PurchasesController < ApplicationController
         end
 
       # If file is invalid, rollback transactions
-      rescue InvalidUpload, ArgumentError, EOFError => e
+      rescue ActiveRecord::ActiveRecordError, InvalidUpload, ArgumentError, EOFError => e
         @rows[:invalid] << [0, nil, e]
+        raise ActiveRecord::Rollback, 'Only valid files are saved.'
       end
     end
   end
