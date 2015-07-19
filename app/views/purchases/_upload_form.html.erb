@@ -1,0 +1,11 @@
+<h4>Data Upload</h4>
+<p>Upload tabular (.tab) data files.</p>
+
+<%= form_tag(purchases_upload_path, multipart: true) do %>
+  <div class="form-group">
+    <%= file_field_tag 'upload' %>
+  </div>
+  <div class="actions">
+    <%= submit_tag 'Upload' %>
+  </div>
+<% end %>

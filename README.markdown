@@ -89,4 +89,12 @@ and enhancements and are labelled accordingly.
 
 ### Production Considerations
 
+A list of potential enhancement can be found in the "To Do" list on my Trello board:
+
+- [https://trello.com/b/HeGGvdbM/san-pedro](https://trello.com/b/HeGGvdbM/san-pedro)
+
+To transform this into a production-ready site, I would address the following points:
+
+- Data normalization: more or less rigorous uniqueness constraints?
+
 TBA
