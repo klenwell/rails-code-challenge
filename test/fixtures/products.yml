@@ -1,0 +1,16 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+cliff_jump:
+  merchant_id: <%= ActiveRecord::FixtureSet.identify(:acme_skydiving) %>
+  description: half-price off desert cliff jump
+  price: 49.99
+
+bobs_burger_special:
+  merchant_id: <%= ActiveRecord::FixtureSet.identify(:bobs_burgers) %>
+  description: Burger of the Day
+  price: 2.00
+  
+other_bobs_burger_special:
+  merchant_id: <%= ActiveRecord::FixtureSet.identify(:the_other_bobs_burgers) %>
+  description: Burger of the Day
+  price: 2.00

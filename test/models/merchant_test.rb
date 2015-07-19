@@ -10,8 +10,6 @@ class MerchantTest < ActiveSupport::TestCase
   end
 
   test "should require address field" do
-    assert merchants(:acme_skydiving).valid?
-
     merchants(:acme_skydiving).address = nil
     assert_invalid_record_field(merchants(:acme_skydiving), :address, "can't be blank")
   end
