@@ -8,6 +8,16 @@ class PurchasesController < ApplicationController
   # POST /purchases/upload
   def upload
     # Processes uploaded file.
+    # Validate upload present
+    return redirect_to purchases_path, alert: 'Please submit a file.' if params[:upload].blank?
+
+    @upload = params[:upload]
+
+    # File records
+    rows = {
+      valid: [],
+      invalid: []
+    }
   end
 
 end
