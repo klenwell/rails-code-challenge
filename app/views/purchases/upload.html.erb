@@ -1,7 +1,11 @@
 <h2>Purchases File Upload</h2>
 
 <% if @rows[:invalid].empty? %>
-  <h4 class="upload_success">Upload success!</h4>
+  <h4 class="upload_success">
+    <%= format('Your file %s was successfully uploaded with %d purchases.',
+               @upload.original_filename,
+               @rows[:valid].length) %>
+  </h4>
   <p class="grand_total">
     Total Revenue in File:
     <span class="total_revenue">
@@ -11,6 +15,9 @@
   <p><%= link_to 'Upload another file', purchases_path %></p>
 
 <% else %>
-  <h4 class="upload_failure">Upload failure!</h4>
+  <h4 class="upload_failure">
+    <%= format('Your file %s could not be uploaded. Please check contents and resubmit.',
+               @upload.original_filename) %>
+  </h4>
   <p><%= link_to 'Try again', purchases_path %></p>
 <% end %>
