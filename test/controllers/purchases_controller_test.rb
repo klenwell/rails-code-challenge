@@ -15,14 +15,28 @@ class PurchasesControllerTest < ActionController::TestCase
 
   test "should save data when valid tab file uploaded and display total revenue" do
     assert_difference('Purchase.count', +4) do
-      post :upload, upload: fixture_file_upload('files/valid_data.tab')
+      assert_difference('Purchaser.count', +1) do   # 2 names match fixtures
+        assert_difference('Merchant.count', +3) do
+          assert_difference('Product.count', +3) do
+            post :upload, upload: fixture_file_upload('files/valid_data.tab')
+          end
+        end
+      end
     end
 
     assert_response :success
     assert_select 'h4.upload_success'
     assert_select 'span.total_revenue', {text: '$95.00'}
+  end
 
-    # TODO: Verify associated data created.
+  test "should save data when valid file with blank rows uploaded" do
+    assert_difference('Purchase.count', +3) do
+      post :upload, upload: fixture_file_upload('files/valid_data_with_blank_rows.tab')
+    end
+
+    assert_response :success
+    assert_select 'h4.upload_success'
+    assert_select 'span.total_revenue', {text: '$90.00'}
   end
 
   test "should not save data when empty file uploaded" do
