@@ -22,7 +22,17 @@ class PurchasesControllerTest < ActionController::TestCase
     assert_select 'h4.upload_success'
     assert_select 'span.total_revenue', {text: '$95.00'}
 
-    # Verify associated data created.
+    # TODO: Verify associated data created.
+  end
+
+  test "should not save data when empty file uploaded" do
+    assert_no_difference('Purchase.count') do
+      post :upload, upload: fixture_file_upload('files/empty.tab')
+    end
+
+    # Returns 200 but with error messages
+    assert_response :success
+    assert_select 'h4.upload_failure'
   end
 
   test "should not save data when file with invalid data uploaded" do
