@@ -1,5 +1,7 @@
 class PurchasesController < ApplicationController
 
+  class InvalidUpload < Exception; end
+
   # GET /purchases
   def index
     # Shows upload form.
@@ -24,6 +26,15 @@ class PurchasesController < ApplicationController
       # Rescue block for file-level validations: empty file
       begin
         SmarterCSV.process(@upload.path, {:col_sep => "\t"}).each_with_index do |row, line_num|
+          # Validate header row
+          # TODO: This is kludgey. Is there a way to get header row itself from SmarterCSV?
+          if line_num == 0
+            expected_columns = [:purchaser_name, :item_description, :item_price,
+                                :purchase_count, :merchant_address, :merchant_name]
+            raise InvalidUpload.new('Invalid file format.') unless
+              row.keys.sort == expected_columns.sort
+          end
+
           # Find or create associated model records.
           merchant = Merchant.where(name: row[:merchant_name],
                                     address: row[:merchant_address]).first_or_create
@@ -45,7 +56,7 @@ class PurchasesController < ApplicationController
         end
 
       # If file is invalid, rollback transactions
-      rescue EOFError => e
+      rescue InvalidUpload, EOFError => e
         @rows[:invalid] << [0, nil, e]
       end
     end
