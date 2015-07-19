@@ -56,7 +56,7 @@ class PurchasesController < ApplicationController
         end
 
       # If file is invalid, rollback transactions
-      rescue InvalidUpload, EOFError => e
+      rescue InvalidUpload, ArgumentError, EOFError => e
         @rows[:invalid] << [0, nil, e]
       end
     end

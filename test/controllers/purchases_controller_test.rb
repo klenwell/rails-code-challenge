@@ -44,6 +44,15 @@ class PurchasesControllerTest < ActionController::TestCase
     assert_select 'h4.upload_failure'
   end
 
+  test "should not save data when binary file uploaded" do
+    assert_no_difference('Purchase.count') do
+      post :upload, upload: fixture_file_upload('files/binary_data.png')
+    end
+
+    assert_response :success
+    assert_select 'h4.upload_failure'
+  end
+
   test "should not save data when file with invalid data uploaded" do
   end
 end
