@@ -14,7 +14,7 @@ class PurchasesController < ApplicationController
     @upload = params[:upload]
 
     # File records
-    rows = {
+    @rows = {
       valid: [],
       invalid: []
     }
