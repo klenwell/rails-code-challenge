@@ -7,12 +7,10 @@ class PurchaserTest < ActiveSupport::TestCase
     assert amy.valid?
 
     amy.name = ''
-    assert_not amy.valid?
-    assert_equal amy.errors.to_hash[:name].first, "can't be blank"
+    assert_invalid_record_field(amy, :name, "can't be blank")
 
     amy.name = purchasers(:snake).name
-    assert_not amy.valid?
-    assert_equal amy.errors.to_hash[:name].first, 'has already been taken'
+    assert_invalid_record_field(amy, :name, 'has already been taken')
   end
 
 end
