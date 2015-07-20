@@ -75,7 +75,6 @@ Single test:
 - Designed application to meet minimum requirements of application while leaving room for progressive improvements.
 - To expedite development, invalid files fail fast with terse messaging. Upload logic set up to enable more expressive feedback with minimal refactoring if desired.
 - Organized data into Purchase, Merchant, Product, and Purchaser model. Adapted model names and other terminology from project spec and provided sample file.
-- Denormalized products tables to be associated with both purchases and merchants table to simplify purchase queries.
 - Chose SmarterCSV because I've used it before and it provides a friendly interface.
 - Used MiniTest as a matter of habit.
 - Coding style and practices generally reflect those promoted at my current organization.
@@ -112,7 +111,6 @@ To transform this into a production-ready site, I would consider the following p
 - Delegate processing to backend queues should upload files be too large for single request.
 - Restructure data?
   - The extra models and tables may be overkill if the data is going to be integrated with existing data by some secondary process.
-  - Denormalize products table further to preserve all order data with records (perhaps in a json field)?
   - Denormalization may also be warranted depending the size of data and performance demands on application.
 - Use a different data store?
 - Refactor data parser to be more tolerant or flexible, perhaps as its own class or library.
