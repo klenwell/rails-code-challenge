@@ -1,40 +1,120 @@
-# Challenge for Software Engineer
-To better assess a candidates development skills, we would like to provide the following challenge. Use your own judgment on deciding how long to spend on this. We want you to feel comfortable and not rushed without feeling obligated to burn a lot of your personal time on it. Feel free to add comments in the README for things you would do given more time.
+# San Pedro
+Web engineering challenge presented for Living Social.
 
-If you are applying for a software engineer position, the email address you should use for submission is [dev.challenges@livingsocial.com](mailto:dev.challenges@livingsocial.com).  Please use either Ruby or Clojure.
+Named after the home of the busiest port in the United States.
 
-Feel free to email the appropriate address above if you have any questions.
+## Installation
+San Pedro is designed to be run locally on the Rails development server with
+a PostgreSQL database.
 
-## Submission Instructions
-1. First, fork this project on github.  You will need to create an account if you don't already have one.
-2. Next, complete the project as described below within your fork.
-3. Finally, push all of your changes to your fork on github and submit a pull request.  You should also email the appropriate address listed in the first section and your recruiter to let them know you have submitted a solution.  Make sure to include your github username in your email (so we can match people with pull requests).
+### Prerequisites
+Developed and tested with the following components:
 
-## Alternate Submission Instructions (if you don't want to publicize completing the challenge)
-1. Clone the repository
-2. Next, complete your project as described below within your local repository
-3. Email a patch file to the appropriate address listed above: [dev.challenges@livingsocial.com](dev.challenges@livingsocial.com)
+- [Rails 4.2.3](http://rubyonrails.org/)
+- [Ruby 2.2.1](https://www.ruby-lang.org/en/downloads/)
+- [PostgreSQL 9.1.18](http://www.postgresql.org/)
+- [Bundler 1.10.5](http://bundler.io/)
+- [Git 1.7.9.5](http://git-scm.com/)
 
-## Project Description
-Imagine that LivingSocial has just acquired a new company.  Unfortunately, the company has never stored their data in a database and instead uses a plain text file.  We need to create a way for the new subsidiary to import their data into a database.
+For help setting up Rails, see [gorails.com](https://gorails.com/setup/).
 
-Here's what your web-based application must do:
+### Application Setup
+Install the application itself using git:
 
-1. Your app must accept (via a form) a tab delimited file with the following columns: purchaser name, item description, item price, purchase count, merchant address, and merchant name.  You can assume the columns will always be in that order, that there will always be data in each column, and that there will always be a header line.  An example input file named example_input.tab is included in this repo.
-2. Your app must parse the given file, normalize the data, and store the information in a relational database.
-3. After upload, your application should display the total amount gross revenue represented by the uploaded file.
+    git clone https://github.com/klenwell/san-pedro.git san-pedro
 
-Your application does not need to:
+Install gems:
 
-1. handle authentication or authorization (bonus points if it does, extra bonus points if authentication is via OpenID)
-2. be aesthetically pleasing
+    cd san-pedro
+    bundle install
 
-Your application should be easy to set up and should run on either Linux or Mac OS X.  It should not require any for-pay software.
+### Database
 
-## Evaluation
-Evaluation of your submission will be based on the following criteria. Additionally, reviewers will attempt to assess your familiarity with standard libraries. If your code submission is in Ruby, reviewers will attempt to assess your experience with object-oriented programming based on how you've structured your submission.
+Create your application's postgres database:
 
-1. Did your application fulfill the basic requirements?
-2. Did you document the method for setting up and running your application?
-3. Did you follow the instructions for submission?
-4. Did you consider what changes would need to be made for a true production-ready solution? You can include your thoughts in the README.
+    # Use postgres command line interface
+    sudo su - postgres
+    psql
+
+    # SQL commands
+    CREATE USER san_pedro WITH PASSWORD 'san_pedro';
+    CREATE DATABASE san_pedro_dev;
+    GRANT ALL PRIVILEGES ON DATABASE san_pedro_dev TO san_pedro;
+    CREATE DATABASE san_pedro_test;
+    GRANT ALL PRIVILEGES ON DATABASE san_pedro_test TO san_pedro;
+
+Setup database:
+
+    bundle exec rake db:setup RAILS_ENV=development
+    bundle exec rake db:setup RAILS_ENV=test
+
+
+## Usage
+### Local Server
+
+To start the the local server on port 3000:
+
+    bundle exec rails server -b 0.0.0.0 -p 3000
+
+You should be able to upload files at http://localhost:3000/.
+
+
+## Tests
+All tests:
+
+    bundle exec rake test
+
+Single test:
+
+    bundle exec rake TEST=test/models/purchases_test.rb
+
+
+## Thoughts and Considerations
+### Design Decisions
+
+- Designed application to meet minimum requirements of application while leaving room for progressive improvements.
+- To expedite development, invalid files fail fast with terse messaging. Upload logic set up to enable more expressive feedback with minimal refactoring if desired.
+- Organized data into Purchase, Merchant, Product, and Purchaser model. Adapted model names and other terminology from project spec and provided sample file.
+- Denormalized products tables to be associated with both purchases and merchants table to simplify purchase queries.
+- Chose SmarterCSV because I've used it before and it provides a friendly interface.
+- Used MiniTest as a matter of habit.
+- Coding style and practices generally reflect those promoted at my current organization.
+
+### Project Management
+I used an Agile approach to organize and task out my project. I tracked my work
+using a Trello kanban board:
+
+- https://trello.com/b/HeGGvdbM/san-pedro
+
+User stories were divided between requirements (meeting minimum requirements of challenge)
+and enhancements and are labelled accordingly.
+
+### Timesheet
+In total, I spent about 5 hours completing the minimum requirements of the exercise:
+
+    Planning        0.5 hours
+    Project Setup   0.5
+    Upload Form     3.0
+    Summary/Review  1.0
+    --------------
+    Total           5.0 hours
+
+I may continue working on additional enhancements over the next couple days as time
+permits. I will continue to push changes to my repository.
+
+### Production Considerations
+A list of potential enhancement can be found in the "To Do" list on my Trello board:
+
+- [https://trello.com/b/HeGGvdbM/san-pedro](https://trello.com/b/HeGGvdbM/san-pedro)
+
+To transform this into a production-ready site, I would consider the following points:
+
+- Subject application to appropriate security analysis.
+- Provide more detailed error messages to identify issues with reject files.
+- Refactor data parser to be more tolerant or flexible, perhaps as its own class or library.
+- Restructure data?
+  - The extra models and tables may be overkill if the data is going to be integrated with existing data by some secondary process.
+  - Denormalize products table further to preserve all order data with records (perhaps in a json field)?
+  - Denormalization may also be warranted depending the size of data and performance demands on application.
+- Use a different data store?
+- Solicit suggestions for improved interface.

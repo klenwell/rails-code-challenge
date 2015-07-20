@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+acme_skydiving:
+  name: Acme Skydiving, LLC
+  address: 1000 Road Runner Lane 
+
+bobs_burgers:
+  name: Bob's Burgers
+  address: 13891 Beach Blvd
+
+the_other_bobs_burgers:
+  name: Bob's Burgers
+  address: Ocean Avenue

@@ -1,0 +1,10 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+amy:
+  name: Amy Pond
+
+snake:
+  name: Snake Plissken
+  
+wile:
+  name: Wile E. Coyote
