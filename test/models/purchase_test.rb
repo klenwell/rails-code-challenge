@@ -14,12 +14,6 @@ class PurchaseTest < ActiveSupport::TestCase
     assert @burgers_for_snake.valid?
   end
 
-  test "that purchases require merchant" do
-    @burgers_for_snake.merchant_id = nil
-    assert_not @burgers_for_snake.valid?
-    assert_equal @burgers_for_snake.errors.to_hash[:merchant].first, "can't be blank"
-  end
-
   test "that purchases require purchaser" do
     @burgers_for_snake.purchaser_id = nil
     assert_not @burgers_for_snake.valid?

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150719192405) do
+ActiveRecord::Schema.define(version: 20150720124829) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 20150719192405) do
 
   create_table "purchases", force: :cascade do |t|
     t.integer  "purchaser_id"
-    t.integer  "merchant_id"
     t.integer  "product_id"
     t.integer  "count"
     t.decimal  "total_amount", precision: 12, scale: 2
@@ -54,7 +53,6 @@ ActiveRecord::Schema.define(version: 20150719192405) do
     t.datetime "updated_at",                            null: false
   end
 
-  add_index "purchases", ["merchant_id"], name: "index_purchases_on_merchant_id", using: :btree
   add_index "purchases", ["product_id"], name: "index_purchases_on_product_id", using: :btree
   add_index "purchases", ["purchaser_id"], name: "index_purchases_on_purchaser_id", using: :btree
 

@@ -2,13 +2,11 @@
 
 cliff_jumping_for_wile:
   purchaser_id: <%= ActiveRecord::FixtureSet.identify(:wile) %>
-  merchant_id: <%= ActiveRecord::FixtureSet.identify(:acme_skydiving) %>
   product_id: <%= ActiveRecord::FixtureSet.identify(:cliff_jump) %>
   count: 1
   # total_amount is a computed field
 
 burgers_for_snake:
   purchaser_id: <%= ActiveRecord::FixtureSet.identify(:snake) %>
-  merchant_id: <%= ActiveRecord::FixtureSet.identify(:bobs_burgers) %>
   product_id: <%= ActiveRecord::FixtureSet.identify(:bobs_burger_special) %>
   count: 2
