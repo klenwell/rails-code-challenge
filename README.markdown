@@ -1,25 +1,24 @@
 # San Pedro
-
 Web engineering challenge presented for Living Social.
 
 Named after the home of the busiest port in the United States.
 
 ## Installation
-
 San Pedro is designed to be run locally on the Rails development server with
 a PostgreSQL database.
 
 ### Prerequisites
+Developed and tested with the following components:
 
-- [Ruby 2+](https://www.ruby-lang.org/en/downloads/)
-- [PostgreSQL 9+](http://www.postgresql.org/)
-- [Bundler](http://bundler.io/)
-- [Git](http://git-scm.com/)
+- [Rails 4.2.3](http://rubyonrails.org/)
+- [Ruby 2.2.1](https://www.ruby-lang.org/en/downloads/)
+- [PostgreSQL 9.1.18](http://www.postgresql.org/)
+- [Bundler 1.10.5](http://bundler.io/)
+- [Git 1.7.9.5](http://git-scm.com/)
 
 For help setting up Rails, see [gorails.com](https://gorails.com/setup/).
 
 ### Application Setup
-
 Install the application itself using git:
 
     git clone https://github.com/klenwell/san-pedro.git san-pedro
@@ -51,7 +50,6 @@ Setup database:
 
 
 ## Usage
-
 ### Local Server
 
 To start the the local server on port 3000:
@@ -72,13 +70,17 @@ Single test:
 
 
 ## Thoughts and Considerations
-
 ### Design Decisions
 
-TBA
+- Designed application to meet minimum requirements of application while leaving room for progressive improvements.
+- To expedite development, invalid files fail fast with terse messaging. Upload logic set up to enable more expressive feedback with minimal refactoring if desired.
+- Organized data into Purchase, Merchant, Product, and Purchaser model. Adapted model names and other terminology from project spec and provided sample file.
+- Denormalized products tables to be associated with both purchases and merchants table to simplify purchase queries.
+- Chose SmarterCSV because I've used it before and it provides a friendly interface.
+- Used MiniTest as a matter of habit.
+- Coding style and practices generally reflect those promoted at my current organization.
 
 ### Project Management
-
 I used an Agile approach to organize and task out my project. I tracked my work
 using a Trello kanban board:
 
@@ -87,14 +89,32 @@ using a Trello kanban board:
 User stories were divided between requirements (meeting minimum requirements of challenge)
 and enhancements and are labelled accordingly.
 
-### Production Considerations
+### Timesheet
+In total, I spent about 5 hours completing the minimum requirements of the exercise:
 
+    Planning        0.5 hours
+    Project Setup   0.5
+    Upload Form     3.0
+    Summary/Review  1.0
+    --------------
+    Total           5.0 hours
+
+I may continue working on additional enhancements over the next couple days as time
+permits. I will continue to push changes to my repository.
+
+### Production Considerations
 A list of potential enhancement can be found in the "To Do" list on my Trello board:
 
 - [https://trello.com/b/HeGGvdbM/san-pedro](https://trello.com/b/HeGGvdbM/san-pedro)
 
-To transform this into a production-ready site, I would address the following points:
+To transform this into a production-ready site, I would consider the following points:
 
-- Data normalization: more or less rigorous uniqueness constraints?
-
-TBA
+- Subject application to appropriate security analysis.
+- Provide more detailed error messages to identify issues with reject files.
+- Refactor data parser to be more tolerant or flexible, perhaps as its own class or library.
+- Restructure data?
+  - The extra models and tables may be overkill if the data is going to be integrated with existing data by some secondary process.
+  - Denormalize products table further to preserve all order data with records (perhaps in a json field)?
+  - Denormalization may also be warranted depending the size of data and performance demands on application.
+- Use a different data store?
+- Solicit suggestions for improved interface.

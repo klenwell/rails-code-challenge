@@ -23,7 +23,7 @@ class PurchasesController < ApplicationController
     # Parse file. Wrap in a transaction so that records only will be saved only if all
     # records in file are valid.
     Purchase.transaction do
-      # Rescue block for file-level validations: empty file
+      # Rescue block for file-level validations: empty file, invalid format, etc.
       begin
         SmarterCSV.process(@upload.path, {:col_sep => "\t"}).each do |row, line_num|
           # Validate header row
@@ -35,21 +35,10 @@ class PurchasesController < ApplicationController
               row.keys.sort == expected_columns.sort
           end
 
-          # Find or create associated model records.
-          merchant = Merchant.where(name: row[:merchant_name],
-                                    address: row[:merchant_address]).first_or_create
-
-          product = Product.where(description: row[:item_description],
-                                  price: row[:item_price],
-                                  merchant_id: merchant.id).first_or_create
-
-          purchaser = Purchaser.where(name: row[:purchaser_name]).first_or_create
-
-          # Now we can create the new purchase record
-          Purchase.create!(count: row[:purchase_count],
-                                  merchant_id: merchant.id,
-                                  product_id: product.id,
-                                  purchaser_id: purchaser.id)
+          # Create new purchase record (along with associated merchant, product
+          # purchaser records.)
+          # TODO: Wrap this in a rescue so processing doesn't stop at first invalid row.
+          Purchase.create_from_uploaded_row!(row)
 
           row[:total_amount] = row[:purchase_count].to_i * row[:item_price].to_f
           @rows[:valid] << row

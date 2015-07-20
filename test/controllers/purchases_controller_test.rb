@@ -72,7 +72,6 @@ class PurchasesControllerTest < ActionController::TestCase
       post :upload, upload: fixture_file_upload('files/invalid_data.tab')
     end
 
-    # Returns 200 but with error messages
     assert_response :success
     assert_select 'h4.upload_failure'
   end
