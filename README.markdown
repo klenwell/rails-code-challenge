@@ -56,7 +56,7 @@ To start the the local server on port 3000:
 
     bundle exec rails server -b 0.0.0.0 -p 3000
 
-You should be able to upload files at http://localhost:3000/.
+You should be able to upload files at [http://localhost:3000/](http://localhost:3000/).
 
 
 ## Tests
@@ -84,7 +84,7 @@ Single test:
 I used an Agile approach to organize and task out my project. I tracked my work
 using a Trello kanban board:
 
-- https://trello.com/b/HeGGvdbM/san-pedro
+- [https://trello.com/b/HeGGvdbM/san-pedro](https://trello.com/b/HeGGvdbM/san-pedro)
 
 User stories were divided between requirements (meeting minimum requirements of challenge)
 and enhancements and are labelled accordingly.
@@ -99,22 +99,21 @@ In total, I spent about 5 hours completing the minimum requirements of the exerc
     --------------
     Total           5.0 hours
 
-I may continue working on additional enhancements over the next couple days as time
-permits. I will continue to push changes to my repository.
-
 ### Production Considerations
-A list of potential enhancement can be found in the "To Do" list on my Trello board:
+A list of potential enhancements can be found in the "To Do" list on my Trello board:
 
 - [https://trello.com/b/HeGGvdbM/san-pedro](https://trello.com/b/HeGGvdbM/san-pedro)
 
 To transform this into a production-ready site, I would consider the following points:
 
-- Subject application to appropriate security analysis.
+- Add authentication (using OpenID). Subject application to appropriate security analysis.
+- Add a file/upload model to track uploads and stop duplicates.
 - Provide more detailed error messages to identify issues with reject files.
-- Refactor data parser to be more tolerant or flexible, perhaps as its own class or library.
+- Delegate processing to backend queues should upload files be too large for single request.
 - Restructure data?
   - The extra models and tables may be overkill if the data is going to be integrated with existing data by some secondary process.
   - Denormalize products table further to preserve all order data with records (perhaps in a json field)?
   - Denormalization may also be warranted depending the size of data and performance demands on application.
 - Use a different data store?
+- Refactor data parser to be more tolerant or flexible, perhaps as its own class or library.
 - Solicit suggestions for improved interface.
