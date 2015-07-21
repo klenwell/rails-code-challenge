@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
 
   def authenticate
-    p ENV["GOOGLE_CLIENT_ID"], ENV["GOOGLE_CLIENT_SECRET"]
     unless signed_in?
       redirect_to auth_confirm_path
     end
