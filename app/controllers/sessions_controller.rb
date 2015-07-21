@@ -10,13 +10,18 @@ class SessionsController < ApplicationController
       auth_token = google_auth[:credentials][:token]
       sign_in auth_token
     else
-      flash[:alert] = 'Authentication failed!'
-      render 'new'
+      redirect_to auth_failure_path
     end
   end
 
   def destroy
     sign_out
     redirect_to root_url
+  end
+
+  def failure
+    sign_out
+    flash[:alert] = 'Authentication failed!'
+    render 'new'
   end
 end
