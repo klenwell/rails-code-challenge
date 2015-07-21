@@ -2,6 +2,8 @@ class PurchasesController < ApplicationController
 
   class InvalidUpload < Exception; end
 
+  before_action :authenticate
+
   # GET /purchases
   def index
     # Shows upload form.
