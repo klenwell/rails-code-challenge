@@ -1,10 +1,20 @@
 require 'test_helper'
 
 class PurchasesControllerTest < ActionController::TestCase
+  def setup
+    sign_in
+  end
+
   test "should display index page with upload form" do
     get :index
     assert_response :success
     assert_select 'input#upload'
+  end
+
+  test "should not be able to access index when not authenticated" do
+    sign_out
+    get :index
+    assert_response :redirect
   end
 
   test "should display error message when no file submitted" do
