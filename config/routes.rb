@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
 
   # Purchases upload
-  get 'purchases', to: 'index'
+  get 'purchases', to: 'purchases#index'
   post '/purchases/upload', to: 'purchases#upload'
 
   # Authentication
   get '/authenticate', to: 'sessions#new', as: :auth_confirm
   get '/auth/:provider/callback', to: 'sessions#create'
-  get '/logout', to: 'sessions#destroy'
+  get '/sign_out', to: 'sessions#destroy'
 
   root 'purchases#index'
 
