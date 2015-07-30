@@ -15,6 +15,7 @@ Your company has just acquired a new company and needs to import their data. Unf
 2. Parses input file, normalizes the data, and stores the information in a relational database.
 3. After upload, displays the total amount gross revenue represented by the uploaded file.
 4. Installs and runs easily on either Linux or Mac OS X.
+5. It should not require any for-pay software.
 
 The application does not need to:
 
