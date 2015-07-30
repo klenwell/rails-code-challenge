@@ -1,11 +1,45 @@
-# San Pedro
-Web engineering challenge presented for Living Social.
+# Rails Code Challenge
 
-Named after the home of the busiest port in the United States.
+[![Build Status](https://travis-ci.org/klenwell/rails-code-challenge.svg?branch=master)](https://travis-ci.org/klenwell/rails-code-challenge)
+
+## Background
+
+This challenge was originally presented by a well-known daily-deal site. I passed the challenge but in the course of interviewing for a remote senior Rails developer position, I was informed that management had decided to suspend all remote hires and only hire in-house going forward.
+
+I was invited to fork a private bare-bones git repository on Github. It was suggested that the challenge would require about 3 hours. I was given a week in which to submit a pull request comprising my solution.
+
+
+## Challenge
+
+Your company has just acquired a new company and needs to import their data. Unfortunately, the acquired company has never stored their data in a database and instead uses a plain text file. Create a web-based application that fulfills the following requirements:
+
+1. Accepts (via a form) a tab delimited file with the following columns: purchaser name, item description, item price, purchase count, merchant address, merchant name. Assume the columns will always be in that order, that there will always be data in each column, and that there will always be a header line. An example input file named example_input.tab is included in this repo.
+2. Parses input file, normalizes the data, and stores the information in a relational database.
+3. After upload, displays the total amount gross revenue represented by the uploaded file.
+4. Installs and runs easily on either Linux or Mac OS X.
+5. It should not require any for-pay software.
+
+The application does not need to:
+
+1. handle authentication or authorization (bonus points if it does, extra bonus points if authentication is via OpenID)
+2. be aesthetically pleasing
+
+
+## Evaluation
+
+Evaluation of your submission will be based on the following criteria:
+
+1. Did your application fulfill the basic requirements?
+2. Did you document the method for setting up and running your application?
+3. Did you follow the instructions for submission?
+4. Did you consider what changes would need to be made for a true production-ready solution? You can include your thoughts in the README.
+
+----
+
+# Challenge Submission
 
 ## Installation
-San Pedro is designed to be run locally on the Rails development server with
-a PostgreSQL database.
+This application is designed to be run locally on the Rails development server with a PostgreSQL database.
 
 ### Prerequisites
 Developed and tested with the following components:
@@ -21,19 +55,17 @@ For help setting up Rails, see [gorails.com](https://gorails.com/setup/).
 ### Application Setup
 Install the application itself using git:
 
-    git clone https://github.com/klenwell/san-pedro.git san-pedro
+    git clone https://github.com/klenwell/rails-code-challenge.git rails-code-challenge
 
 Install gems:
 
-    cd san-pedro
+    cd rails-code-challenge
     bundle install
 
 ### Authentication
-Authentication was implemented using the [OmniAuth Google OAuth2 gem](https://github.com/zquestz/omniauth-google-oauth2) and requires a Google account
-to authentice with the app. Any Gmail account should work.
+Authentication was implemented using the [OmniAuth Google OAuth2 gem](https://github.com/zquestz/omniauth-google-oauth2) and requires a Google account to authentice with the app. Any Gmail account should work.
 
-It also requires the following additional configuration. To set up an API key and
-authorize your application, follow these steps:
+It also requires the following additional configuration. To set up an API key and authorize your application, follow these steps:
 
 1. Log into your [Google Developer's Console](https://console.developers.google.com/).
 2. Select an existing project (or create a new one if necessary).
@@ -47,8 +79,7 @@ authorize your application, follow these steps:
   - Under Redirect URIs: `http://localhost:3000/auth/google_oauth2/callback`
 8. Click **Create Client ID** button.
 
-You will be redirected to Credentials screen where you can now obtain the `Client ID`
-and `Client Secret` tokens you will need for your app.
+You will be redirected to Credentials screen where you can now obtain the `Client ID` and `Client Secret` tokens you will need for your app.
 
 Note: You would need to add any additional URIs for staging or production servers.
 
@@ -70,11 +101,11 @@ Create your application's postgres database:
     psql
 
     # SQL commands
-    CREATE USER san_pedro WITH PASSWORD 'san_pedro';
-    CREATE DATABASE san_pedro_dev;
-    GRANT ALL PRIVILEGES ON DATABASE san_pedro_dev TO san_pedro;
-    CREATE DATABASE san_pedro_test;
-    GRANT ALL PRIVILEGES ON DATABASE san_pedro_test TO san_pedro;
+    CREATE USER rails_challenge WITH PASSWORD 'rails_challenge';
+    CREATE DATABASE rails_challenge_dev;
+    GRANT ALL PRIVILEGES ON DATABASE rails_challenge_dev TO rails_challenge;
+    CREATE DATABASE rails_challenge_test;
+    GRANT ALL PRIVILEGES ON DATABASE rails_challenge_test TO rails_challenge;
 
 Setup database:
 
@@ -113,13 +144,11 @@ Single test:
 - Coding style and practices generally reflect those promoted at my current organization.
 
 ### Project Management
-I used an Agile approach to organize and task out my project. I tracked my work
-using a Trello kanban board:
+I used an Agile approach to organize and task out my project. I tracked my work using a Trello kanban board:
 
-- [https://trello.com/b/HeGGvdbM/san-pedro](https://trello.com/b/HeGGvdbM/san-pedro)
+- [https://trello.com/b/MwWGnF4p/rails-code-challenge](https://trello.com/b/MwWGnF4p/rails-code-challenge)
 
-User stories were divided between requirements (meeting minimum requirements of challenge)
-and enhancements and are labelled accordingly.
+User stories were divided between requirements (meeting minimum requirements of challenge) and enhancements and are labelled accordingly.
 
 ### Timesheet
 In total, I spent about 5 hours completing the minimum requirements of the exercise:
@@ -131,10 +160,7 @@ In total, I spent about 5 hours completing the minimum requirements of the exerc
     ----------------------------
     Total                           5.0 hours
 
-I spent another 5-6 hours in total implementing a working authentication feature integrating
-Google's OAuth 2.0 API which, according to [their
-documentation](https://developers.google.com/identity/protocols/OpenIDConnect)
-"conforms to the OpenID Connect specification, and is OpenID Certified":
+I spent another 5-6 hours in total implementing a working authentication feature integrating Google's OAuth 2.0 API which, according to [their documentation](https://developers.google.com/identity/protocols/OpenIDConnect) "conforms to the OpenID Connect specification, and is OpenID Certified":
 
     Research/Planning               0.5 hours
     Failed 1st Try                  1.0
@@ -144,12 +170,9 @@ documentation](https://developers.google.com/identity/protocols/OpenIDConnect)
     ----------------------------
     Total                           5.5 hours
 
-### Production Considerations
-A list of potential enhancements can be found in the "To Do" list on my Trello board:
+### Production Consideration
 
-- [https://trello.com/b/HeGGvdbM/san-pedro](https://trello.com/b/HeGGvdbM/san-pedro)
-
-To transform this into a production-ready site, I would consider the following points:
+In submitting my original pull request, I offered the following points to consider before releasing the application to production:
 
 - Subject application to appropriate security analysis.
   - Is authentication implemented correctly?
@@ -163,3 +186,7 @@ To transform this into a production-ready site, I would consider the following p
 - Use a different data store?
 - Refactor data parser to be more tolerant or flexible, perhaps as its own class or library.
 - Solicit suggestions for improved interface.
+
+A list of additional enhancements can be found in the "To Do" list on my Trello board:
+
+- [https://trello.com/b/MwWGnF4p/rails-code-challenge](https://trello.com/b/MwWGnF4p/rails-code-challenge)

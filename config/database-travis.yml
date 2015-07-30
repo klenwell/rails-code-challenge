@@ -1,0 +1,7 @@
+# config/database-travis.yml
+# Used as database config for Travis-CI tests.
+
+test:
+  adapter: postgresql
+  database: travis_ci_test
+  username: postgres
