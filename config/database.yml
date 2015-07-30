@@ -19,19 +19,19 @@ default: &default
   encoding: unicode
   pool: 5
   host: localhost
-  username: san_pedro
-  password: san_pedro
+  username: rails_challenge
+  password: rails_challenge
 
 development:
   <<: *default
-  database: san_pedro_dev
+  database: rails_challenge_dev
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: san_pedro_test
+  database: rails_challenge_test
 
 # As with config/secrets.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -55,5 +55,5 @@ test:
 production:
   <<: *default
   host: TBA
-  database: san_pedro_production
-  password: <%= ENV['SAN_PEDRO_DATABASE_PASSWORD'] %>
+  database: rails_challenge_production
+  password: <%= ENV['RAILS_CHALLENGE_DATABASE_PASSWORD'] %>
