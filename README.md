@@ -1,5 +1,7 @@
 # Rails Code Challenge
 
+[![Build Status](https://travis-ci.org/klenwell/rails-code-challenge.svg?branch=master)](https://travis-ci.org/klenwell/rails-code-challenge)
+
 ## Background
 
 This challenge was originally presented by a well-known daily-deal site. I passed the challenge but in the course of interviewing for a remote senior Rails developer position, I was informed that management had decided to suspend all remote hires and only hire in-house going forward.
